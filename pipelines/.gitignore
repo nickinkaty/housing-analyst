@@ -1,4 +1,6 @@
-.idea/
-
 # Environments
 venv/
+.env
+
+#TXT FILES
+dependencies.txt
