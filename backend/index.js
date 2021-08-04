@@ -1,14 +1,17 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
+import pool from "./db/db";
+import dotenv from "dotenv";
 
-require("dotenv").config();
-const { pool } = require("./services/db");
+// CONFIGURE DOTENV
+dotenv.config();
+
+const app = express();
 
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
 
 app.listen(process.env.API_PORT, () => {
-  console.log(process.env.API_PORT);
+  console.log(`We are live on ${process.env.API_PORT}`);
 });

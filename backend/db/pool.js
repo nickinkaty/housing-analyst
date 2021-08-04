@@ -1,4 +1,8 @@
-const pg = require("pg");
+import { Pool } from "pg";
+import dotenv from "dotenv";
+
+// CONFIGURE DOTENV
+dotenv.config();
 
 const config = {
   user: process.env.DB_USER, //this is the db user credential
@@ -9,8 +13,6 @@ const config = {
   idleTimeoutMillis: process.env.DB_ITM,
 };
 
-const pool = new pg.Pool(config);
+const pool = new Pool(config);
 
-pool.on("connect", () => {
-  console.log("connected to the Database");
-});
+export default pool;
