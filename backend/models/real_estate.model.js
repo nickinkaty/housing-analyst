@@ -1,7 +1,7 @@
 const createRealEstateQuery = `
   CREATE TABLE IF NOT EXISTS real_estate
     (
-       zpid                SMALLINT PRIMARY KEY,
+       zpid                BIGINT PRIMARY KEY,
        bathrooms           SMALLINT,
        bedrooms            SMALLINT,
        city                VARCHAR(35),

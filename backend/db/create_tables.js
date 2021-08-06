@@ -1,4 +1,3 @@
-require = require("esm")(module /*, options*/);
 import pool from "./pool";
 import createRealEstateQuery from "../models/real_estate.model";
 
