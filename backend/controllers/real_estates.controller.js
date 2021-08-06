@@ -6,6 +6,7 @@ import { successMessage, errorMessage, status } from "../helpers/status";
 const createRealEstates = async (req, res) => {
   const createRealEstateArray = jsonArrayToNestedArray(req.body);
 
+  // CREATE SQL QUERY
   const sql = format(
     `
     INSERT INTO
@@ -43,8 +44,6 @@ const createRealEstates = async (req, res) => {
     %L`,
     createRealEstateArray
   );
-
-  console.log(sql);
 
   pool
     .query(sql)
