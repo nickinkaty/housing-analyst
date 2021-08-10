@@ -1,6 +1,7 @@
 # Environments
 venv/
 .env
+setting.py
 
 #TXT FILES
 dependencies.txt
