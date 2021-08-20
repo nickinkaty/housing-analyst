@@ -45,6 +45,8 @@ const createRealEstates = async (req, res) => {
     createRealEstateArray
   );
 
+  console.log(sql);
+
   pool
     .query(sql)
     .then((queryRes) => {

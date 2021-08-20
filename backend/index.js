@@ -3,7 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 // ROUTES IMPORT
-import realEstateRoute from "./routes/real_estates.route.js";
+import realEstateRoute from "./routes/real_estate.route.js";
+import regionIdRoute from "./routes/zillow_url_parameters.route.js";
 
 // CONFIGURE DOTENV
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // ROUTES
 app.use(process.env.API_BASE_URL, realEstateRoute);
+app.use(process.env.API_BASE_URL, regionIdRoute);
 
 app.listen(process.env.API_PORT, () => {
   console.log(process.env.API_BASE_URL);

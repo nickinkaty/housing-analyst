@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createRealEstates } from "../controllers/real_estates.controller.js";
+import { createRealEstates } from "../controllers/real_estate.controller.js";
 
 const router = express.Router();
 

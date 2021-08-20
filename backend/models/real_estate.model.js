@@ -17,18 +17,18 @@ const createRealEstateQuery = `
        home_type           VARCHAR(25),
        img_src             VARCHAR(140),
        living_area         INT,
-       lot_area_unit       INT,
-       lot_area_value      INT,
+       lot_area_unit       VARCHAR(15),
+       lot_area_value      DECIMAL,
        price               INT,
        price_change        INT,
-       price_reduction     INT,
+       price_reduction     VARCHAR(70),
        rent_zestimate      INT,
        state               VARCHAR(25),
        street_address      VARCHAR(60),
        tax_assessed_value  INT,
-       time_on_zillow      INT,
+       time_on_zillow      BIGINT,
        zestimate           INT,
-       zipcode             SMALLINT
+       zipcode             INT
     )`;
 
 export default createRealEstateQuery;
