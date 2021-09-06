@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres-api-db:
+    image: postgres:13.4-alpine
+    restart: always
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_PASSWORD: Buddy12354!
+      POSTGRES_DB: housing-analyst
+    networks:
+      - airflow_default
+
+  housing-analyst-api:
+    image: test-api:latest
+    volumes:
+      - /home/nickinkaty/PycharmProjects/Housing -Analyst/backend:/backend
+    ports:
+      - 5000:3000
+    depends_on:
+      - postgres-api-db
+    networks:
+      - airflow_default
+networks:
+  airflow_default:
+    driver: bridge
+    external: true
+#    depends_on:
+#      - postgres-api-db
+# api/docker-compose.yml

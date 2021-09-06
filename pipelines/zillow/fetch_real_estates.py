@@ -1,4 +1,5 @@
 import requests
+from clean_data import clean_real_estates_data
 
 headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -25,6 +26,8 @@ headers = {
 def fetch_real_estates(region_id: str):
     r = requests.get('https://www.zillow.com/search/GetSearchPageState.htm?searchQueryState={"pagination":{"currentPage":2},"usersSearchTerm":"77493","mapBounds":{"west":-95.907893,"east":-95.773356,"south":29.785206,"north":29.950635},"regionSelection":[{"regionId":91981,"regionType":7}],"isMapVisible":false,"filterState":{"sortSelection":{"value":"globalrelevanceex"},"isAllHomes":{"value":true}},"isListVisible":true}&wants={"cat1":["listResults"],"cat2":["total"]}&requestId=2', headers=headers).json()
     real_estate_results = r["cat1"]["searchResults"]["listResults"]
+
+    print(clean_real_estates_data(real_estate_results))
 
 
 fetch_real_estates("1")

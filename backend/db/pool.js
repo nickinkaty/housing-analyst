@@ -6,6 +6,7 @@ dotenv.config();
 
 const config = {
   user: process.env.DB_USER, //this is the db user credential
+  host: process.env.HOST,
   database: process.env.DB,
   password: process.env.DB_PASS,
   port: process.env.DB_PORT,

@@ -21,8 +21,8 @@ app.use(express.json());
 app.use(process.env.API_BASE_URL, realEstateRoute);
 app.use(process.env.API_BASE_URL, regionIdRoute);
 
-app.listen(process.env.API_PORT, () => {
-  console.log(process.env.API_BASE_URL);
+app.listen(process.env.API_PORT, process.env.LISTEN_IP, () => {
+  console.log(process.env.LISTEN_IP, process.env.API_BASE_URL);
   console.log(`We are live on ${process.env.API_PORT}`);
 });
 

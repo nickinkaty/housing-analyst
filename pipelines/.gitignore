@@ -3,5 +3,13 @@ venv/
 .env
 setting.py
 
-#TXT FILES
+# TXT FILES
 dependencies.txt
+
+# AIRFLOW LOG FOLDERS
+airflow/logs/*
+
+
+.dockerignore*
+.gitignore*
+*.pyc
