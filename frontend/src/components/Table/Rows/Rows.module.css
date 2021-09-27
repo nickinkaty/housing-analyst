@@ -1,0 +1,7 @@
+.table-row {
+    display: table-row;
+}
+
+.table-row:nth-of-type(odd) {
+    background: #f6f6f6;
+}

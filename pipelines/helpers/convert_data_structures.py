@@ -1,1 +1,0 @@
-print(set(["two", "one"]) - set(["one"]))

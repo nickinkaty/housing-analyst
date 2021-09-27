@@ -8,6 +8,8 @@ import { jsonArrayToNestedArray } from "../helpers/convert_data_structures";
 const createZillowUrlParameters = async (req, res) => {
   const zillowUrlParameters = jsonArrayToNestedArray(req.body);
 
+  console.log("zillow url parameters", zillowUrlParameters);
+
   // RESET zillowUrlParameters TABLE
   pool.query("DELETE FROM zillow_url_parameter;");
 
@@ -32,14 +34,19 @@ const createZillowUrlParameters = async (req, res) => {
     INSERT INTO
         zillow_url_parameter (
           region_id,
-          zipcode
+          region_type,
+          zipcode,
+          west,
+          east,
+          north,
+          south
         )
     VALUES
     %L RETURNING *`,
     zillowUrlParameters
   );
 
-  pool
+  await pool
     .query(createZillowUrlParametersQuery)
     .then((queryRes) => {
       console.log(queryRes.rows);
@@ -54,4 +61,22 @@ const createZillowUrlParameters = async (req, res) => {
     });
 };
 
-export { createZillowUrlParameters };
+const getAllZillowUrlParameters = async (req, res) => {
+  // CREATE SQL QUERY
+  const getAllZillowUrlParametersQuery = `SELECT * FROM zillow_url_parameter;`;
+
+  await pool
+    .query(getAllZillowUrlParametersQuery)
+    .then((queryRes) => {
+      console.log(queryRes.rowCount, "3333");
+      successMessage.count = queryRes.rowCount;
+      successMessage.data = queryRes.rows;
+      return res.status(status.created).send(successMessage);
+    })
+    .catch((queryErr) => {
+      errorMessage.error = "Unable to fetch zillow url parameters!";
+      return res.status(status.error).send(errorMessage);
+    });
+};
+
+export { createZillowUrlParameters, getAllZillowUrlParameters };

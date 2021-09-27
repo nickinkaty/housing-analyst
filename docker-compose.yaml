@@ -14,18 +14,25 @@ services:
 
   housing-analyst-api:
     image: test-api:latest
+    restart: always
     volumes:
       - /home/nickinkaty/PycharmProjects/Housing -Analyst/backend:/backend
     ports:
       - 5000:3000
-    depends_on:
-      - postgres-api-db
     networks:
       - airflow_default
+  housing-analyst-frontend:
+    image: housing-analyst-frontend:latest
+    restart: always
+    volumes:
+      - /home/nickinkaty/PycharmProjects/Housing -Analyst/frontend:/frontend
+    ports:
+      - 3000:3002
+    networks:
+      - airflow_default
+
+   
 networks:
   airflow_default:
     driver: bridge
     external: true
-#    depends_on:
-#      - postgres-api-db
-# api/docker-compose.yml

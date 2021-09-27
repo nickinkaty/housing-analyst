@@ -5,6 +5,7 @@ import { successMessage, errorMessage, status } from "../helpers/status";
 
 const createRealEstates = async (req, res) => {
   const createRealEstateArray = jsonArrayToNestedArray(req.body);
+  // pool.query("DELETE FROM real_estate;");
 
   // CREATE SQL QUERY
   const sql = format(
@@ -45,9 +46,7 @@ const createRealEstates = async (req, res) => {
     createRealEstateArray
   );
 
-  console.log(sql);
-
-  pool
+  await pool
     .query(sql)
     .then((queryRes) => {
       successMessage.count = queryRes.rowCount;
@@ -55,17 +54,59 @@ const createRealEstates = async (req, res) => {
       return res.status(status.created).send(successMessage);
     })
     .catch((queryErr) => {
+      console.log(queryErr);
       errorMessage.error = "Unable to create Real Estates";
       return res.status(status.error).send(errorMessage);
     });
 };
 
-const createRealEstatessss = async (req, res) => {
-  console.log("test");
-  console.log(req.body);
-  console.log(res);
-  // const {} = req.body;
-  return res.status("200").send("successMessage");
+const getRealEstate = async (req, res) => {
+  console.log(req);
+  let realEstates = [];
+  res.status(status.success).json({
+    status: "success",
+    result: realEstates.length,
+    data: {
+      realEstates,
+    },
+  });
 };
 
-export { createRealEstates, createRealEstatessss };
+const getRealEstateAnalyst = async (req, res) => {
+  let realEstates = [];
+  const sql = `
+    SELECT 
+        zipcode, 
+        COUNT(*) as "totalRealEstate", 
+        AVG(price) as "avgPrice", 
+        AVG(bathrooms) as "avgBathrooms",
+        AVG(bedrooms) as "avgBedrooms",
+        AVG(price) as "avgPrice",
+        AVG(price_change) as "avgPriceChange",
+        AVG(days_on_zillow) as "avgDaysOnZillow"
+    FROM 
+        real_estate 
+    GROUP BY 
+        zipcode;`;
+
+  await pool
+    .query(sql)
+    .then((queryRes) => {
+      realEstates = queryRes.rows;
+      // console.log(queryRes);
+      res.status(status.success).json({
+        status: "success",
+        result: realEstates.length,
+        data: {
+          realEstates,
+        },
+      });
+    })
+    .catch((queryErr) => {
+      console.log(queryErr);
+      errorMessage.error = "Unable to create Real Estates";
+      return res.status(status.error).send(errorMessage);
+    });
+};
+
+export { createRealEstates, getRealEstate, getRealEstateAnalyst };

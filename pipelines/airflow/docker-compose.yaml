@@ -47,14 +47,16 @@ x-airflow-common:
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
-    AIRFLOW_ZILLOW_DAGS_PY_SCRIPTS_FOLDER: "/opt/airflow/dags/zillow/scripts"
-    API_BASE_URL: "http://172.19.0.3:5000/api/v1/"
+    AIRFLOW__SCHEDULER__SCHEDULE_AFTER_TASK_EXECUTION: 'false'
+    AIRFLOW_ZILLOW_DAGS_PY_SCRIPTS_FOLDER: "/opt/airflow/zillow/scripts"
+    API_BASE_URL: "http://172.18.0.3:5000/api/v1/"
     PROXY_HTTP: "http://248975009710735361-st-us_texas:ASYVCP04GX7FMWF@resi.linkproxy.lighting:8000/"
     PROXY_HTTPS: "https://248975009710735361-st-us_texas:ASYVCP04GX7FMWF@resi.linkproxy.lighting:8000/"
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
+    - ./zillow:/opt/airflow/zillow
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
   depends_on:
     postgres:

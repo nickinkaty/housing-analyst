@@ -1,6 +1,6 @@
 import pool from "./pool";
 import createRealEstateQuery from "../models/real_estate.model";
-import createRegionIdQuery from "../models/zillow_url_parameter.model";
+import createZillowUrlParameterQuery from "../models/zillow_url_parameter.model";
 
 pool.on("connect", () => {
   console.log("connected to the Database");
@@ -21,7 +21,10 @@ const createTables = (creatTableQuery) => {
 };
 
 export const createAllTables = () => {
-  const createTablesQueryArr = [createRealEstateQuery, createRegionIdQuery];
+  const createTablesQueryArr = [
+    createRealEstateQuery,
+    createZillowUrlParameterQuery,
+  ];
   let queryStr = "";
   createTablesQueryArr.forEach((createTablesQuery) => {
     queryStr += createTablesQuery + ";";

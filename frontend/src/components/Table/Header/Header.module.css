@@ -1,0 +1,12 @@
+.table-row {
+    display: table-row;
+    font-weight: 900;
+    color: #ffffff;
+    background: #ea6153;
+    border-radius: 25px;
+}
+
+.table-cell {
+    display: table-cell;
+    padding: 10px;
+}
