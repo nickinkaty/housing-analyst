@@ -1,9 +1,0 @@
-sudo apt install curl
-
-https://www.postgresql.org/download/linux/ubuntu/
-https://ubuntu.com/server/docs/databases-postgresql
-https://www.pgadmin.org/download/pgadmin-4-apt/
-https://stackoverflow.com/questions/7695962/password-authentication-failed-for-user-postgres
-
-// sql query injection documentation
-https://www.npmjs.com/package/pg-format
